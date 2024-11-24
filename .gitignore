@@ -1,28 +1,37 @@
+# Byte-compiled files
 __pycache__/
 *.py[cod]
+*.pyo
 
-*.sqlite3
-*.env
-*.venv
+# Environment variables and secrets
+.env
+
+# Django-related files
+db.sqlite3  # If you're using SQLite as a local database
+media/  # If you store user-uploaded files locally
+staticfiles/  # For static files collected using `collectstatic`
+
+# Virtual environment
 venv/
 env/
-ENV/
+.virtualenv/
 
-
-.vscode/
+# IDE and editor settings
 .idea/
-*.swp
-*.swo
+.vscode/
+*.sublime-project
+*.sublime-workspace
 
-*.log
-db.sqlite3
-
-/staticfiles/
-/mediafiles/
-
-*.sass-cache/
-*.scss-cache/
-node_modules/
-
+# Operating system files
 .DS_Store
 Thumbs.db
+
+# Log files
+*.log
+
+# Migrations (optional)
+# You might want to include these for version control, but if not:
+migrations/
+
+# Node.js files (if applicable)
+node_modules/
