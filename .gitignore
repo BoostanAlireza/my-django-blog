@@ -7,9 +7,9 @@ __pycache__/
 .env
 
 # Django-related files
-db.sqlite3  # If you're using SQLite as a local database
-media/  # If you store user-uploaded files locally
-staticfiles/  # For static files collected using `collectstatic`
+db.sqlite3 
+media/ 
+staticfiles/ 
 
 # Virtual environment
 venv/
