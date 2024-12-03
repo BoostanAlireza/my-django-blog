@@ -13,6 +13,8 @@ pep8 = "*"
 pylint = "*"
 autopep8 = "*"
 djoser = "*"
+djangorestframework-simplejwt = "*"
+django-extensions = "*"
 
 [dev-packages]
 

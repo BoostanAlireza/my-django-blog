@@ -1,3 +1,20 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+
+@admin.register(models.Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'created_at', 'category']
+    prepopulated_fields = {
+        'slug': ['title']
+    }
+
+
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['title']
+
+
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['post', 'commenter']
