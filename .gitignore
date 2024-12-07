@@ -36,5 +36,5 @@ migrations/
 # Node.js files (if applicable)
 node_modules/
 
-JWT/
-usernamepass/
+JWT
+usernamepass
