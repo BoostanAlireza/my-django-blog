@@ -27,3 +27,11 @@ class Comment(models.Model):
     body = models.TextField()
     placed_at = models.DateTimeField(auto_now_add=True)
     
+
+
+class Profile(models.Model):
+    bio = models.TextField()
+    phone = models.CharField(max_length=255)
+    birth_date = models.DateField(null=True, blank=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user_photo = models.ImageField(upload_to='blog/images', null=True, blank=True)
