@@ -15,6 +15,7 @@ autopep8 = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
 django-extensions = "*"
+django-filter = "*"
 
 [dev-packages]
 
