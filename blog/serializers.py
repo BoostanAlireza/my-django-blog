@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, Category, Comment
+from .models import Post, Category, Comment, Profile
 
 
 
@@ -24,4 +24,9 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['post', 'commenter', 'placed_at', 'body']
 
-        
+       
+class ProfileSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField()
+    class Meta:
+        model = Profile
+        fields = ['id', 'user_id', 'bio', 'birth_date', 'phone', 'user_photo']
