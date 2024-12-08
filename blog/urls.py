@@ -11,6 +11,7 @@ router.register('profiles', views.ProfileViewSet)
 
 posts_router = routers.NestedDefaultRouter(router, 'posts', lookup='post')
 posts_router.register('comments', views.CommentViewSet, basename='post-comments')
+posts_router.register('images', views.PostImageViewSet, basename='post-images')
 
 # categories_router = routers.NestedDefaultRouter(router, 'categories', lookup='category')
 # categories_router.register('posts', views.CategoryPostViewSet, basename='category-posts')

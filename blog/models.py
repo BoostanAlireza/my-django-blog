@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from .validators import validate_file_size
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -21,6 +21,10 @@ class Post(models.Model):
         return self.title
 
 
+class PostImage(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='blog/images')
+
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     commenter = models.CharField(max_length=255)
@@ -34,4 +38,4 @@ class Profile(models.Model):
     phone = models.CharField(max_length=255)
     birth_date = models.DateField(null=True, blank=True)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    user_photo = models.ImageField(upload_to='blog/images', null=True, blank=True)
+    user_photo = models.ImageField(upload_to='blog/images', validators=[validate_file_size], null=True, blank=True)

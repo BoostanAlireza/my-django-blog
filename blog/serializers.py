@@ -1,12 +1,22 @@
 from rest_framework import serializers
-from .models import Post, Category, Comment, Profile
+from .models import Post, Category, Comment, Profile, PostImage
 
 
+class PostImageSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        post_id = self.context['post_id']
+        return PostImage.objects.create(post_id=post_id, **validated_data)
+
+    class Meta:
+        model = PostImage
+        fields = ['id', 'image']
 
 class PostSerializer(serializers.ModelSerializer):
+    images = PostImageSerializer(many=True, read_only=True)
     class Meta:
         model = Post
-        fields = ['id', 'title', 'author', 'created_at', 'category']
+        fields = ['id', 'title', 'author', 'created_at', 'category', 'images']
+
 
 
 class CategorySerializer(serializers.ModelSerializer):
