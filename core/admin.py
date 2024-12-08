@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.contenttypes.admin import GenericTabularInline
 from blog.models import Post
-from blog.admin import PostAdmin
+from blog.admin import PostAdmin, PostImageInline
 from tags.models import TaggedItem
 from .models import User
 
@@ -25,7 +25,7 @@ class TagInline(GenericTabularInline):
 
 
 class CustomPostAdmin(PostAdmin):
-    inlines = [TagInline]
+    inlines = [TagInline, PostImageInline]
 
 
 admin.site.unregister(Post)
