@@ -4,8 +4,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework import permissions
-from .models import Post, Category, Comment, Profile, PostImage
-from .serializers import PostSerializer, CategorySerializer, CommentSerializer, ProfileSerializer, PostImageSerializer
+from .models import Post, Category, Comment, PostImage, Author
+from .serializers import PostSerializer, CategorySerializer, CommentSerializer,  PostImageSerializer, AuthorSerializer
 from .filters import PostFilter
 from .pagination import DefaultPagination
 from .permissions import IsAdminOrReadOnly
@@ -51,6 +51,6 @@ class CommentViewSet(ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
-class ProfileViewSet(ModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+class AuthorViewSet(ModelViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer

@@ -4,10 +4,10 @@ from django.contrib.contenttypes.admin import GenericTabularInline
 from blog.models import Post
 from blog.admin import PostAdmin, PostImageInline
 from tags.models import TaggedItem
-from .models import User
+from .models import CustomUser
 
 
-@admin.register(User)
+@admin.register(CustomUser)
 class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None,

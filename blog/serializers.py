@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import Post, Category, Comment, Profile, PostImage
+from .models import Post, Category, Comment,  PostImage, Author
 
 
 class PostImageSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
-        post_id = self.context['post_id']
+        post_id = self.context['post_pk']
         return PostImage.objects.create(post_id=post_id, **validated_data)
 
     class Meta:
@@ -35,8 +35,8 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['post', 'commenter', 'placed_at', 'body']
 
        
-class ProfileSerializer(serializers.ModelSerializer):
+class AuthorSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField()
     class Meta:
-        model = Profile
+        model = Author
         fields = ['id', 'user_id', 'bio', 'birth_date', 'phone', 'user_photo']

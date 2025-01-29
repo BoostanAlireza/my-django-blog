@@ -147,14 +147,13 @@ REST_FRAMEWORK = {
     ),
 }
 
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = 'core.CustomUser'
 
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
 DJOSER = {
-    'USER_CREATE_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
         'user_create': 'core.serializers.UserCreateSerializer',
         'current_user': 'core.serializers.UserSerializer',

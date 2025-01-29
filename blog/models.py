@@ -14,6 +14,7 @@ class Post(models.Model):
     slug = models.SlugField()
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='posts')
     created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts')
 
@@ -22,7 +23,8 @@ class Post(models.Model):
 
 
 class PostImage(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE\
+                                 , related_name='images')
     image = models.ImageField(upload_to='blog/images')
 
 class Comment(models.Model):
@@ -33,7 +35,7 @@ class Comment(models.Model):
     
 
 
-class Profile(models.Model):
+class Author(models.Model):
     bio = models.TextField()
     phone = models.CharField(max_length=255)
     birth_date = models.DateField(null=True, blank=True)
