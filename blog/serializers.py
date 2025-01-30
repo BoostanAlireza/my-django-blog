@@ -11,11 +11,28 @@ class PostImageSerializer(serializers.ModelSerializer):
         model = PostImage
         fields = ['id', 'image']
 
+
+class AuthorSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(read_only=True)
+    username = serializers.SerializerMethodField()
+
+    def get_username(self, author):
+        return author.user.username
+
+    class Meta:
+        model = Author
+        fields = ['id', 'username', 'user_id', 'bio',
+                  'birth_date', 'phone', 'user_photo']
+
+
+
 class PostSerializer(serializers.ModelSerializer):
     images = PostImageSerializer(many=True, read_only=True)
+    author = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = Post
-        fields = ['id', 'title', 'author', 'created_at', 'category', 'images']
+        fields = ['id', 'author', 'title', 'body', 'created_at', 'category', 'images']
 
 
 
@@ -30,13 +47,13 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        post_id = self.context['post_pk']
+        return Comment.objects.create(post_id=post_id, **validated_data)
+    
     class Meta:
         model = Comment
-        fields = ['post', 'commenter', 'placed_at', 'body']
+        fields = ['id', 'commenter', 'placed_at', 'body']
+
 
        
-class AuthorSerializer(serializers.ModelSerializer):
-    user_id = serializers.IntegerField()
-    class Meta:
-        model = Author
-        fields = ['id', 'user_id', 'bio', 'birth_date', 'phone', 'user_photo']
